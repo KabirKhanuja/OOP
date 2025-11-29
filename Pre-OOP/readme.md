@@ -1,70 +1,68 @@
-10 C++ Programs to Test Pre-OOP Basics
+## 10 C++ Programs to Test Pre-OOP Basics
 
-1. Basic I/O + Conditionals
+This set of small programs helps you practice core C++ concepts before diving into OOP.
 
-Program: Take two integers and print the larger number.
-Tests: cin, cout, if-else, basic syntax.
+---
 
-2. Looping + Math
+### 1. Basic I/O + Conditionals
 
-Program: Print the sum of digits of an integer.
-Example: 456 → 4+5+6 = 15
-Tests: while loop, remainder operator.
+- **Program:** Take two integers and print the larger number.
+- **Tests:** `cin`, `cout`, `if-else`, basic syntax.
 
-3. Functions
+### 2. Looping + Math
 
-Program: Write a function isPrime(int n) and use it inside main().
-Tests: function declaration, definition, return, scope.
+- **Program:** Print the sum of digits of an integer.
+- **Example:** `456 → 4 + 5 + 6 = 15`
+- **Tests:** `while` loop, remainder operator (`%`).
 
-4. Arrays
+### 3. Functions
 
-Program: Take N inputs and find the second-largest number in the array.
-Tests: arrays, indexing, iteration.
+- **Program:** Write a function `bool isPrime(int n)` and use it inside `main()`.
+- **Tests:** function declaration, definition, return, scope.
 
-5. Strings
+### 4. Arrays
 
-Program: Count vowels in a string.
-Tests: string class, length(), indexing.
+- **Program:** Take `N` inputs and find the second-largest number in the array.
+- **Tests:** arrays, indexing, iteration.
 
-6. Pointers
+### 5. Strings
 
-Program: Swap two numbers using pointers (not references).
-Tests: pointer basics, dereferencing.
+- **Program:** Count vowels in a string.
+- **Tests:** `std::string`, `length()`, indexing.
 
-7. Pass by Reference
+### 6. Pointers
 
-Program: Write a function that takes numbers by reference and multiplies both by 2.
-Tests: references, function parameters.
+- **Program:** Swap two numbers using pointers (not references).
+- **Tests:** pointer basics, dereferencing.
 
-8. Dynamic Memory
+### 7. Pass by Reference
 
-Program: Dynamically allocate an integer array using new, fill it, and find the average.
-Tests: new, delete[], pointers with arrays.
+- **Program:** Write a function that takes numbers by reference and multiplies both by `2`.
+- **Tests:** references, function parameters.
 
-9. Vector + STL Basics
+### 8. Dynamic Memory
 
-Program: Input numbers until -1 is entered; store in vector<int> and sort them.
-Tests: vector, push_back, sort from <algorithm>.
+- **Program:** Dynamically allocate an integer array using `new`, fill it, and find the average.
+- **Tests:** `new`, `delete[]`, pointers with arrays.
 
-10. File Handling
+### 9. `vector` + STL Basics
 
-Program: Write text into a file and read it back.
-Tests: fstream, file open/close, reading/writing.
+- **Program:** Input numbers until `-1` is entered; store them in `std::vector<int>` and sort them.
+- **Tests:** `vector`, `push_back`, `sort` from `<algorithm>`.
 
-If one can solve these smoothly…
+### 10. File Handling
 
-They are ready for OOP topics like:
+- **Program:** Write text into a file and read it back.
+- **Tests:** `std::fstream`, file open/close, reading/writing.
 
-Classes & Objects
+---
 
-Constructors / Destructors
+If you can solve these smoothly, you are ready for OOP topics like:
 
-Encapsulation
-
-Inheritance
-
-Polymorphism
-
-Operator Overloading
-
-File handling with objects
+- Classes & Objects
+- Constructors / Destructors
+- Encapsulation
+- Inheritance
+- Polymorphism
+- Operator Overloading
+- File handling with objects
