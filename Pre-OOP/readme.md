@@ -1,0 +1,70 @@
+10 C++ Programs to Test Pre-OOP Basics
+
+1. Basic I/O + Conditionals
+
+Program: Take two integers and print the larger number.
+Tests: cin, cout, if-else, basic syntax.
+
+2. Looping + Math
+
+Program: Print the sum of digits of an integer.
+Example: 456 → 4+5+6 = 15
+Tests: while loop, remainder operator.
+
+3. Functions
+
+Program: Write a function isPrime(int n) and use it inside main().
+Tests: function declaration, definition, return, scope.
+
+4. Arrays
+
+Program: Take N inputs and find the second-largest number in the array.
+Tests: arrays, indexing, iteration.
+
+5. Strings
+
+Program: Count vowels in a string.
+Tests: string class, length(), indexing.
+
+6. Pointers
+
+Program: Swap two numbers using pointers (not references).
+Tests: pointer basics, dereferencing.
+
+7. Pass by Reference
+
+Program: Write a function that takes numbers by reference and multiplies both by 2.
+Tests: references, function parameters.
+
+8. Dynamic Memory
+
+Program: Dynamically allocate an integer array using new, fill it, and find the average.
+Tests: new, delete[], pointers with arrays.
+
+9. Vector + STL Basics
+
+Program: Input numbers until -1 is entered; store in vector<int> and sort them.
+Tests: vector, push_back, sort from <algorithm>.
+
+10. File Handling
+
+Program: Write text into a file and read it back.
+Tests: fstream, file open/close, reading/writing.
+
+If one can solve these smoothly…
+
+They are ready for OOP topics like:
+
+Classes & Objects
+
+Constructors / Destructors
+
+Encapsulation
+
+Inheritance
+
+Polymorphism
+
+Operator Overloading
+
+File handling with objects
