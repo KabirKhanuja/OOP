@@ -1,0 +1,30 @@
+Day 1: Learn about variables and data types in C
+Day 2: Understand operators and expressions
+Day 3: Master if-else statements and conditional logic
+Day 4: Practice switch-case statements
+Day 5: Learn about loops - for, while, do-while
+Day 6: Understand break and continue statements
+Day 7: Introduction to functions and function calls
+Day 8: Learn function parameters and return values
+Day 9: Understand recursion with examples
+Day 10: Master arrays - declaration and initialization
+Day 11: Practice 2D arrays and multi-dimensional arrays
+Day 12: Learn string handling in C
+Day 13: Understand pointers and memory addresses
+Day 14: Practice pointer arithmetic
+Day 15: Learn dynamic memory allocation (malloc, calloc)
+Day 16: Master structures in C
+Day 17: Understand unions and typedef
+Day 18: Learn file handling - reading files
+Day 19: Practice file handling - writing files
+Day 20: Understand command line arguments
+Day 21: Learn about preprocessor directives
+Day 22: Master macros and conditional compilation
+Day 23: Practice linked list implementation
+Day 24: Learn stack implementation
+Day 25: Understand queue implementation
+Day 26: Practice sorting algorithms
+Day 27: Learn searching algorithms
+Day 28: Mini project - Build a calculator
+Day 29: Mini project - Create a student database
+Day 30: Final project - Complete application
