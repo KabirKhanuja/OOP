@@ -2,7 +2,15 @@
 #include <fstream>
 #include <string>
 #include <cstdlib>
+#include <stdexcept>
+
 using namespace std;
+
+class FileException : public std::runtime_error
+{
+public:
+    explicit FileException(const std::string &msg) : std::runtime_error(msg) {}
+};
 
 class User
 {
@@ -76,8 +84,7 @@ public:
 
         if (!fin)
         {
-            cout << "User database not found!" << endl;
-            return false;
+            throw FileException("User database not found!");
         }
 
         bool found = false;
@@ -116,6 +123,10 @@ public:
     void signup()
     {
         ofstream fout("users.txt", ios::app);
+        if (!fout)
+        {
+            throw FileException("Unable to open user database for writing!");
+        }
         cout << "\n---------- Signup ----------\n";
         cout << "Enter username : ";
         cin >> username;
@@ -286,72 +297,88 @@ public:
     }
 };
 
+
 int main()
 {
-    User::userCount();
-    User u;
-    int choice;
-
-    while (1)
+    try
     {
-        cout << "\n---------- SkillSprint ----------\n";
-        cout << "1. Login" << endl;
-        cout << "2. Signup" << endl;
-        cout << "3. Exit" << endl;
-        cout << "Enter your choice number : ";
-        if (!(cin >> choice))
-        {
-            cin.clear();
-            cin.ignore();
-            cout << "Invalid input! Try again." << endl;
-            continue;
-        }
+        User::userCount();
+        User u;
+        int choice;
 
-        switch (choice)
+        while (1)
         {
-        case 1:
-            if (u.login())
+            cout << "\n---------- SkillSprint ----------\n";
+            cout << "1. Login" << endl;
+            cout << "2. Signup" << endl;
+            cout << "3. Exit" << endl;
+            cout << "Enter your choice number : ";
+            if (!(cin >> choice))
             {
-                cout << "\nAvailable Skills : \n";
-                cout << "1. C Programming" << endl;
-                cout << "2. Fitness" << endl;
-
-                cout << "Select a skill : ";
-                int sc;
-                cin >> sc;
-
-                Skill *s = NULL;
-
-                if (sc == 1)
-                {
-                    s = new TechSkill();
-                }
-                else if (sc == 2)
-                {
-                    s = new FitnessSkill();
-                }
-                else
-                {
-                    cout << "Invalid choice!" << endl;
-                    continue;
-                }
-
-                s->showTasks(u.getUsername());
-                delete s;
+                cin.clear();
+                cin.ignore();
+                cout << "Invalid input! Try again." << endl;
+                continue;
             }
-            break;
 
-        case 2:
-            u.signup();
-            break;
+            switch (choice)
+            {
+            case 1:
+                if (u.login())
+                {
+                    cout << "\nAvailable Skills : \n";
+                    cout << "1. C Programming" << endl;
+                    cout << "2. Fitness" << endl;
 
-        case 3:
-            cout << "Thank you for using SkillSprint!";
-            exit(0);
+                    cout << "Select a skill : ";
+                    int sc;
+                    cin >> sc;
 
-        default:
-            cout << "Invalid choice! Try again." << endl;
+                    Skill *s = NULL;
+
+                    if (sc == 1)
+                    {
+                        s = new TechSkill();
+                    }
+                    else if (sc == 2)
+                    {
+                        s = new FitnessSkill();
+                    }
+                    else
+                    {
+                        cout << "Invalid choice!" << endl;
+                        continue;
+                    }
+
+                    try
+                    {
+                        s->showTasks(u.getUsername());
+                    }
+                    catch (const FileException& fe)
+                    {
+                        cout << "Skill error: " << fe.what() << endl;
+                    }
+
+                    delete s;
+                }
+                break;
+
+            case 2:
+                u.signup();
+                break;
+
+            case 3:
+                cout << "Thank you for using SkillSprint!";
+                exit(0);
+
+            default:
+                cout << "Invalid choice! Try again." << endl;
+            }
         }
+    }
+    catch (const std::exception& e)
+    {
+        cout << "Unexpected error: " << e.what() << endl;
     }
 
     return 0;
