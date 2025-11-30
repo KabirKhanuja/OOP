@@ -33,5 +33,17 @@ int main () {
 
     cout<<"\nReverse ="<< dig;
 
+
+
+    // to calculate the length of the number 
+
+    int number,len; 
+    cout<<"\nEnter a number";
+    cin>>number; 
+    string s = to_string(number);
+    len = s.length();
+
+    cout<<"\nThe number of digits are: "<<len;
+
 }
 
