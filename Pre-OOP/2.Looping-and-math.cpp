@@ -38,12 +38,25 @@ int main () {
     // to calculate the length of the number 
 
     int number,len; 
-    cout<<"\nEnter a number";
+    cout<<"\nEnter a number ";
     cin>>number; 
     string s = to_string(number);
     len = s.length();
 
     cout<<"\nThe number of digits are: "<<len;
+
+    // calculate length using while 
+
+    int num1, len1=0;
+    cout<<"\n Enter a number: ";
+    cin>>num1;
+
+    while(num1>0){
+        len1++;
+        num1=num1/10;
+    }
+
+    cout<<"\n Number of digits are: "<<len1;
 
 }
 
