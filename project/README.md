@@ -1,5 +1,8 @@
 # SkillSprint – Technical Report
 
+<img width="1544" height="1433" alt="image" src="https://github.com/user-attachments/assets/5abb8b0b-ff81-4e39-8c67-50973c457b0f" />
+
+
 ## 1. Introduction
 
 SkillSprint is a simple console-based C++ application that helps a user build habits and learn new skills via 30-day challenges. It is intentionally designed to demonstrate:
