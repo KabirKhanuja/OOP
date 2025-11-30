@@ -1,27 +1,23 @@
-#include <iostream>
-using namespace std;
+    int arr1[5];
+    cout<<"Enter 5 numbers";
 
-bool isPrime(int n) {
-    if (n <= 1) return false;
-
-    for (int i = 2; i <= n / 2; i++) {
-        if (n % i == 0)
-            return false;
-    }
-    return true;
-}
-
-int main(){
-
-    int n;
-    cin >> n;
-
-    if(isPrime(n)){
-        cout << "Prime";
-    } else{
-        cout << "Not Prime";
+    for(int i =0; i<5; i++){
+        cout<<"\nEnter number "<<i+1<<" :";
+        cin>>arr1[i];
     }
 
-}
+    int lar = 0, seclar=0;
+    for(int i=0; i<5; i++){
+        
+        if(lar<arr1[i]){
+            lar = arr1[i];
+        } else {
+            if(seclar<arr1[i]){
+                seclar = arr1[i];
+            }
+            
+        }
+    }
 
-
+    cout<<"Largest number is: "<<lar;
+    cout<<"\nSecond largest number is: "<<seclar;

@@ -7,7 +7,7 @@ using namespace std;
 
 int main(){
 
-    int arr[5];
+ /* int arr[5];
     cout<<"Enter 5 numbers";
 
     for(int i =0; i<4; i++){
@@ -24,7 +24,34 @@ int main(){
 
     cout<<"Largest number is: "<<largest;
 
-
+*/
     // Take N inputs and find the 2nd-largest number in the array.
+
+    int arr1[5];
+    cout<<"Enter 5 numbers";
+
+    for(int i =0; i<5; i++){
+        cout<<"\nEnter number "<<i+1<<" :";
+        cin>>arr1[i];
+    }
+
+    int lar = INT_MIN, seclar=INT_MIN;
+    for(int i=0; i<5; i++){
+        
+        if(lar<arr1[i]){
+            seclar = lar;
+            lar = arr1[i];
+        } else {
+            if(seclar<arr1[i]){
+                seclar = arr1[i];
+            }
+            
+        }
+    }
+
+    cout<<"Largest number is: "<<lar;
+    cout<<"\nSecond largest number is: "<<seclar;
+
+
 
 }
