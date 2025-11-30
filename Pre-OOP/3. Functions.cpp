@@ -1,8 +1,5 @@
-// basic brushing up for oop
-
-// 1. Basic I/O + Conditionals
-
-// 2. Looping + Math
+#include <iostream>
+using namespace std;
 
 // 3. Functions
 
