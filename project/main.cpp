@@ -12,6 +12,22 @@ public:
     explicit FileException(const std::string &msg) : std::runtime_error(msg) {}
 };
 
+class InputException : public std::runtime_error
+{
+public:
+    explicit InputException(const std::string &msg) : std::runtime_error(msg) {}
+};
+
+template <typename T>
+T clampValue(const T &value, const T &minValue, const T &maxValue)
+{
+    if (value < minValue)
+        return minValue;
+    if (value > maxValue)
+        return maxValue;
+    return value;
+}
+
 class User
 {
 private:
@@ -176,7 +192,8 @@ public:
             fin >> day;
         }
         fin.close();
-        return day;
+        // Clamp day between 1 and 30 (Generics usage)
+        return clampValue(day, 1, 30);
     }
 
     void saveProgress(string username, int day)
@@ -297,6 +314,293 @@ public:
     }
 };
 
+class CookingSkill : public Skill
+{
+public:
+    CookingSkill()
+    {
+        skillName = "Cooking";
+    }
+
+    void showTasks(string username) override
+    {
+        ifstream fin("Cooking.txt");
+        if (!fin)
+        {
+            cout << "Cooking skill not found!\n";
+            return;
+        }
+
+        int day = getSavedProgress(username);
+        string task;
+        int currentDay = 1;
+        char choice;
+
+        cout << "\n---------- 30 Day Cooking Challenge ----------\n";
+        cout << "\nResuming from Day " << day << endl;
+
+        while (getline(fin, task))
+        {
+            if (currentDay < day)
+            {
+                currentDay++;
+                continue;
+            }
+
+            cout << "\n"
+                 << task << endl;
+            cout << "Enter Y when completed : ";
+            cin >> choice;
+
+            if (choice == 'Y' || choice == 'y')
+            {
+                currentDay++;
+                saveProgress(username, currentDay);
+            }
+            else
+            {
+                cout << "Progress saved. Come back tomorrow!" << endl;
+                break;
+            }
+        }
+
+        fin.close();
+    }
+};
+
+class SingingSkill : public Skill
+{
+public:
+    SingingSkill()
+    {
+        skillName = "Singing";
+    }
+
+    void showTasks(string username) override
+    {
+        ifstream fin("Singing.txt");
+        if (!fin)
+        {
+            cout << "Singing skill not found!\n";
+            return;
+        }
+
+        int day = getSavedProgress(username);
+        string task;
+        int currentDay = 1;
+        char choice;
+
+        cout << "\n---------- 30 Day Singing Challenge ----------\n";
+        cout << "\nResuming from Day " << day << endl;
+
+        while (getline(fin, task))
+        {
+            if (currentDay < day)
+            {
+                currentDay++;
+                continue;
+            }
+
+            cout << "\n"
+                 << task << endl;
+            cout << "Enter Y when completed : ";
+            cin >> choice;
+
+            if (choice == 'Y' || choice == 'y')
+            {
+                currentDay++;
+                saveProgress(username, currentDay);
+            }
+            else
+            {
+                cout << "Progress saved. Come back tomorrow!" << endl;
+                break;
+            }
+        }
+
+        fin.close();
+    }
+};
+
+class DrawingSkill : public Skill
+{
+public:
+    DrawingSkill()
+    {
+        skillName = "Drawing";
+    }
+
+    void showTasks(string username) override
+    {
+        ifstream fin("Drawing.txt");
+        if (!fin)
+        {
+            cout << "Drawing skill not found!\n";
+            return;
+        }
+
+        int day = getSavedProgress(username);
+        string task;
+        int currentDay = 1;
+        char choice;
+
+        cout << "\n---------- 30 Day Drawing Challenge ----------\n";
+        cout << "\nResuming from Day " << day << endl;
+
+        while (getline(fin, task))
+        {
+            if (currentDay < day)
+            {
+                currentDay++;
+                continue;
+            }
+
+            cout << "\n"
+                 << task << endl;
+            cout << "Enter Y when completed : ";
+            cin >> choice;
+
+            if (choice == 'Y' || choice == 'y')
+            {
+                currentDay++;
+                saveProgress(username, currentDay);
+            }
+            else
+            {
+                cout << "Progress saved. Come back tomorrow!" << endl;
+                break;
+            }
+        }
+
+        fin.close();
+    }
+};
+
+void printMainMenu()
+{
+    cout << "\n---------- SkillSprint ----------\n";
+    cout << "1. Login" << endl;
+    cout << "2. Signup" << endl;
+    cout << "3. About / Help" << endl;
+    cout << "4. Exit" << endl;
+    cout << "Enter your choice number : ";
+}
+
+void showAbout()
+{
+    cout << "\n---------- About SkillSprint ----------\n";
+    cout << "SkillSprint is a simple console app to practice:\n";
+    cout << "- Classes and objects\n";
+    cout << "- File handling\n";
+    cout << "- Basic exception handling (try/catch)\n";
+    cout << "- A small template utility (clampValue)\n";
+    cout << "- SOLID ideas: SRP, OCP, LSP, DIP via Skill hierarchy\n";
+}
+
+Skill *chooseSkill()
+{
+    cout << "\nAvailable Skills : \n";
+    cout << "1. C Programming" << endl;
+    cout << "2. Fitness" << endl;
+    cout << "3. Cooking" << endl;
+    cout << "4. Singing" << endl;
+    cout << "5. Drawing" << endl;
+    cout << "Select a skill : ";
+
+    int sc;
+    if (!(cin >> sc))
+    {
+        cin.clear();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        throw InputException("Invalid input for skill choice");
+    }
+
+    Skill *s = NULL;
+
+    if (sc == 1)
+    {
+        s = new TechSkill();
+    }
+    else if (sc == 2)
+    {
+        s = new FitnessSkill();
+    }
+    else if (sc == 3)
+    {
+        s = new CookingSkill();
+    }
+    else if (sc == 4)
+    {
+        s = new SingingSkill();
+    }
+    else if (sc == 5)
+    {
+        s = new DrawingSkill();
+    }
+    else
+    {
+        throw InputException("Skill choice out of range");
+    }
+
+    return s;
+}
+
+void resetSkillProgress(const string &username)
+{
+    cout << "\n---------- Reset Skill Progress ----------\n";
+    cout << "1. C Programming" << endl;
+    cout << "2. Fitness" << endl;
+    cout << "3. Cooking" << endl;
+    cout << "4. Singing" << endl;
+    cout << "5. Drawing" << endl;
+    cout << "Select a skill to reset : ";
+
+    int sc;
+    if (!(cin >> sc))
+    {
+        cin.clear();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        throw InputException("Invalid input for reset choice");
+    }
+
+    string skillName;
+    if (sc == 1)
+    {
+        skillName = "C_Programming";
+    }
+    else if (sc == 2)
+    {
+        skillName = "Fitness";
+    }
+    else if (sc == 3)
+    {
+        skillName = "Cooking";
+    }
+    else if (sc == 4)
+    {
+        skillName = "Singing";
+    }
+    else if (sc == 5)
+    {
+        skillName = "Drawing";
+    }
+    else
+    {
+        throw InputException("Reset choice out of range");
+    }
+
+    string filename = username + "_" + skillName + ".txt";
+    ofstream fout(filename);
+    if (!fout)
+    {
+        throw FileException("Unable to reset progress file");
+    }
+    fout << 1;
+    fout.close();
+
+    cout << "Progress reset to Day 1 for " << skillName << "\n";
+}
+
 
 int main()
 {
@@ -308,15 +612,11 @@ int main()
 
         while (1)
         {
-            cout << "\n---------- SkillSprint ----------\n";
-            cout << "1. Login" << endl;
-            cout << "2. Signup" << endl;
-            cout << "3. Exit" << endl;
-            cout << "Enter your choice number : ";
+            printMainMenu();
             if (!(cin >> choice))
             {
                 cin.clear();
-                cin.ignore();
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 cout << "Invalid input! Try again." << endl;
                 continue;
             }
@@ -326,40 +626,20 @@ int main()
             case 1:
                 if (u.login())
                 {
-                    cout << "\nAvailable Skills : \n";
-                    cout << "1. C Programming" << endl;
-                    cout << "2. Fitness" << endl;
-
-                    cout << "Select a skill : ";
-                    int sc;
-                    cin >> sc;
-
-                    Skill *s = NULL;
-
-                    if (sc == 1)
-                    {
-                        s = new TechSkill();
-                    }
-                    else if (sc == 2)
-                    {
-                        s = new FitnessSkill();
-                    }
-                    else
-                    {
-                        cout << "Invalid choice!" << endl;
-                        continue;
-                    }
-
                     try
                     {
+                        Skill *s = chooseSkill();
                         s->showTasks(u.getUsername());
+                        delete s;
                     }
-                    catch (const FileException& fe)
+                    catch (const FileException &fe)
                     {
                         cout << "Skill error: " << fe.what() << endl;
                     }
-
-                    delete s;
+                    catch (const InputException &ie)
+                    {
+                        cout << "Input error: " << ie.what() << endl;
+                    }
                 }
                 break;
 
@@ -368,6 +648,10 @@ int main()
                 break;
 
             case 3:
+                showAbout();
+                break;
+
+            case 4:
                 cout << "Thank you for using SkillSprint!";
                 exit(0);
 
