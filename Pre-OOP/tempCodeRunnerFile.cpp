@@ -1,10 +1,27 @@
-    int num1, len1=0;
-    cout<<"\n Enter a number: ";
-    cin>>num1;
+#include <iostream>
+using namespace std;
 
-    while(num1>0){
-        len1++;
-        num1=num1/10;
+bool isPrime(int n) {
+    if (n <= 1) return false;
+
+    for (int i = 2; i <= n / 2; i++) {
+        if (n % i == 0)
+            return false;
+    }
+    return true;
+}
+
+int main(){
+
+    int n;
+    cin >> n;
+
+    if(isPrime(n)){
+        cout << "Prime";
+    } else{
+        cout << "Not Prime";
     }
 
-    cout<<"\n Number of digits are: "<<len1;
+}
+
+

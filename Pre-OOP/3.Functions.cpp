@@ -1,18 +1,27 @@
 #include <iostream>
 using namespace std;
 
-// 3. Functions
+bool isPrime(int n) {
+    if (n <= 1) return false;
 
-// 4. Arrays
+    for (int i = 2; i <= n / 2; i++) {
+        if (n % i == 0)
+            return false;
+    }
+    return true;
+}
 
-// 5. Strings
+int main(){
 
-// 6. Pointers
+    int n;
+    cin >> n;
 
-// 7. Pass by Reference
+    if(isPrime(n)){
+        cout << "Prime";
+    } else{
+        cout << "Not Prime";
+    }
 
-// 8. Dynamic Memory
+}
 
-// 9. Vector + STL Basics
 
-// 10. File Handling
