@@ -42,7 +42,7 @@ int main(){
             seclar = lar;
             lar = arr1[i];
         } else {
-            if(seclar<arr1[i]){
+            if(arr1[i] != lar && seclar<arr1[i]){ // arr1[i] != lar is for distinct values
                 seclar = arr1[i];
             }
             
@@ -51,7 +51,5 @@ int main(){
 
     cout<<"Largest number is: "<<lar;
     cout<<"\nSecond largest number is: "<<seclar;
-
-
 
 }
