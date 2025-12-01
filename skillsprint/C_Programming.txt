@@ -1,0 +1,30 @@
+Day 1: Install a C compiler and write your first Hello World program
+Day 2: Learn variables and data types in C
+Day 3: Practice input and output using scanf and printf
+Day 4: Learn if-else statements
+Day 5: Practice switch case
+Day 6: Learn for loop
+Day 7: Learn while and do-while loops
+Day 8: Practice all loops with examples
+Day 9: Learn functions in C
+Day 10: Practice function programs
+Day 11: Learn arrays
+Day 12: Practice 1D array programs
+Day 13: Learn 2D arrays
+Day 14: Practice matrix programs
+Day 15: Learn strings in C
+Day 16: Practice string functions
+Day 17: Learn pointers
+Day 18: Practice pointer programs
+Day 19: Learn structures
+Day 20: Practice structure programs
+Day 21: Learn unions
+Day 22: Learn file handling in C
+Day 23: Practice file programs
+Day 24: Learn dynamic memory allocation
+Day 25: Practice malloc and free
+Day 26: Learn command line arguments
+Day 27: Learn typedef and macros
+Day 28: Practice revision programs
+Day 29: Build a mini project in C
+Day 30: Final revision and project submission
