@@ -83,6 +83,18 @@ public:
         return totalUsers;
     }
 
+    void initializeStreakFiles(const string &username)
+    {
+        string skills[7] = {"C_Programming", "Fitness", "Cooking", "Drawing", "Guitar", "Journaling", "Singing"};
+        for (int i = 0; i < 7; i++)
+        {
+            string filename = username + "_" + skills[i] + "_streak.txt";
+            ofstream fout(filename);
+            fout << 0;
+            fout.close();
+        }
+    }
+
     bool login()
     {
         ifstream fin("users.txt");
@@ -159,6 +171,8 @@ public:
 
         totalUsers++;
 
+        initializeStreakFiles(username);
+
         cout << "User signup successful! \nProceed to login." << endl;
         cout << "Total registered users : " << getTotalUsers() << endl;
     }
@@ -231,6 +245,8 @@ public:
         fout << streak;
         fout.close();
     }
+
+    virtual ~Skill() {}
 };
 
 class TechSkill : public Skill
@@ -351,10 +367,18 @@ public:
                 int streak = 0;
                 if (sf)
                     sf >> streak;
+                else
+                {
+                    ofstream fout(filename);
+                    fout << 0;
+                    fout.close();
+                }
                 totalStreak += streak;
                 sf.close();
             }
-            leaderboard[index++] = {u, totalStreak};
+
+            Entry e = {u, totalStreak};
+            leaderboard[index++] = e;
         }
         fin.close();
 
