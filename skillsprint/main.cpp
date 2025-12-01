@@ -2,6 +2,9 @@
 #include <fstream>
 #include <string>
 #include <cstdlib>
+#include <vector>
+#include <algorithm>
+
 using namespace std;
 
 template <typename T>
@@ -353,52 +356,59 @@ public:
             string name;
             int totalStreak;
         };
-        Entry leaderboard[100];
-        int index = 0;
+        vector<Entry> leaderboard;
+
+        string skills[7] = {"C_Programming", "Fitness", "Cooking", "Drawing", "Guitar", "Journaling", "Singing"};
 
         while (fin >> u >> p)
         {
             int totalStreak = 0;
-            string skills[7] = {"C_Programming", "Fitness", "Cooking", "Drawing", "Guitar", "Journaling", "Singing"};
+
             for (int i = 0; i < 7; i++)
             {
-                string filename = u + "_" + skills[i] + "_streak.txt";
+                string filename = u + "_" + skills[i] + ".txt";
                 ifstream sf(filename);
                 int streak = 0;
-                if (sf)
-                    sf >> streak;
+
+                if (sf >> streak)
+                {
+                    totalStreak += streak;
+                }
                 else
                 {
                     ofstream fout(filename);
                     fout << 0;
                     fout.close();
                 }
-                totalStreak += streak;
+
                 sf.close();
             }
 
-            Entry e = {u, totalStreak};
-            leaderboard[index++] = e;
+            Entry e;
+            e.name = u;
+            e.totalStreak = totalStreak;
+            leaderboard.push_back(e);
         }
         fin.close();
 
-        for (int i = 0; i < index - 1; i++)
+        for (size_t i = 0; i < leaderboard.size(); i++)
         {
-            for (int j = 0; j < index - i - 1; j++)
+            for (size_t j = i + 1; j < leaderboard.size(); j++)
             {
-                if (leaderboard[j].totalStreak < leaderboard[j + 1].totalStreak)
+                if (leaderboard[i].totalStreak < leaderboard[j].totalStreak)
                 {
-                    Entry temp = leaderboard[j];
-                    leaderboard[j] = leaderboard[j + 1];
-                    leaderboard[j + 1] = temp;
+                    Entry temp = leaderboard[i];
+                    leaderboard[i] = leaderboard[j];
+                    leaderboard[j] = temp;
                 }
             }
         }
 
         cout << "\n----- Leaderboard (Total Streaks) -----\n";
-        for (int i = 0; i < index; i++)
+        int rank = 1;
+        for (auto &entry : leaderboard)
         {
-            cout << i + 1 << ". " << leaderboard[i].name << " - " << leaderboard[i].totalStreak << " days" << endl;
+            cout << rank++ << ". " << entry.name << " - " << entry.totalStreak << " days" << endl;
         }
     }
 };
