@@ -203,6 +203,34 @@ public:
         fout << day;
         fout.close();
     }
+
+    int getStreak(string username)
+    {
+        string filename = username + "_" + skillName + "_streak.txt";
+        ifstream fin(filename);
+        int streak = 0;
+        if (fin)
+        {
+            fin >> streak;
+        }
+        fin.close();
+        return streak;
+    }
+
+    void updateStreak(string username, bool completed)
+    {
+        string filename = username + "_" + skillName + "_streak.txt";
+        int streak = getStreak(username);
+
+        if (completed)
+            streak++;
+        else
+            streak = 0;
+
+        ofstream fout(filename);
+        fout << streak;
+        fout.close();
+    }
 };
 
 class TechSkill : public Skill
@@ -277,15 +305,77 @@ public:
             {
                 currentDay++;
                 saveProgress(username, currentDay);
+                updateStreak(username, true);
             }
             else
             {
+                updateStreak(username, false);
                 cout << "Progress saved. Come back tomorrow!" << endl;
                 break;
             }
         }
 
         fin.close();
+    }
+};
+
+class Leaderboard
+{
+public:
+    void showLeaderboard()
+    {
+        ifstream fin("users.txt");
+        if (!fin)
+        {
+            cout << "No users to display leaderboard!" << endl;
+            return;
+        }
+
+        string u, p;
+        struct Entry
+        {
+            string name;
+            int totalStreak;
+        };
+        Entry leaderboard[100];
+        int index = 0;
+
+        while (fin >> u >> p)
+        {
+            int totalStreak = 0;
+            string skills[7] = {"C_Programming", "Fitness", "Cooking", "Drawing", "Guitar", "Journaling", "Singing"};
+            for (int i = 0; i < 7; i++)
+            {
+                string filename = u + "_" + skills[i] + "_streak.txt";
+                ifstream sf(filename);
+                int streak = 0;
+                if (sf)
+                    sf >> streak;
+                totalStreak += streak;
+                sf.close();
+            }
+            leaderboard[index++] = {u, totalStreak};
+        }
+        fin.close();
+
+        for (int i = 0; i < index - 1; i++)
+        {
+            for (int j = 0; j < index - i - 1; j++)
+            {
+                if (leaderboard[j].totalStreak < leaderboard[j + 1].totalStreak)
+                {
+                    Entry temp = leaderboard[j];
+                    leaderboard[j] = leaderboard[j + 1];
+                    leaderboard[j + 1] = temp;
+                }
+            }
+        }
+
+        cout << "\n----- Leaderboard (Total Streaks) -----\n";
+        for (int i = 0; i < index; i++)
+        {
+            cout << i + 1 << ". " << leaderboard[i].name << " - " << leaderboard[i].totalStreak << " days" << endl;
+        }
     }
 };
 
@@ -338,9 +428,11 @@ public:
             {
                 currentDay++;
                 saveProgress(username, currentDay);
+                updateStreak(username, true);
             }
             else
             {
+                updateStreak(username, false);
                 cout << "Progress saved. Come back tomorrow!" << endl;
                 break;
             }
@@ -399,9 +491,11 @@ public:
             {
                 currentDay++;
                 saveProgress(username, currentDay);
+                updateStreak(username, true);
             }
             else
             {
+                updateStreak(username, false);
                 cout << "Progress saved. Come back tomorrow!" << endl;
                 break;
             }
@@ -460,9 +554,11 @@ public:
             {
                 currentDay++;
                 saveProgress(username, currentDay);
+                updateStreak(username, true);
             }
             else
             {
+                updateStreak(username, false);
                 cout << "Progress saved. Come back tomorrow!" << endl;
                 break;
             }
@@ -521,9 +617,11 @@ public:
             {
                 currentDay++;
                 saveProgress(username, currentDay);
+                updateStreak(username, true);
             }
             else
             {
+                updateStreak(username, false);
                 cout << "Progress saved. Come back tomorrow!" << endl;
                 break;
             }
@@ -582,9 +680,11 @@ public:
             {
                 currentDay++;
                 saveProgress(username, currentDay);
+                updateStreak(username, true);
             }
             else
             {
+                updateStreak(username, false);
                 cout << "Progress saved. Come back tomorrow!" << endl;
                 break;
             }
@@ -643,9 +743,11 @@ public:
             {
                 currentDay++;
                 saveProgress(username, currentDay);
+                updateStreak(username, true);
             }
             else
             {
+                updateStreak(username, false);
                 cout << "Progress saved. Come back tomorrow!" << endl;
                 break;
             }
@@ -666,8 +768,10 @@ int main()
         cout << "\n---------- SkillSprint ----------\n";
         cout << "1. Login" << endl;
         cout << "2. Signup" << endl;
-        cout << "3. Exit" << endl;
+        cout << "3. Leaderboard" << endl;
+        cout << "4. Exit" << endl;
         cout << "Enter your choice number : ";
+
         try
         {
             if (!(cin >> choice))
@@ -748,6 +852,11 @@ int main()
             break;
 
         case 3:
+            Leaderboard lb;
+            lb.showLeaderboard();
+            break;
+
+        case 4:
             cout << "Thank you for using SkillSprint!";
             exit(0);
 
