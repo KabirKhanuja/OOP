@@ -22,9 +22,6 @@ private:
     string password;
     static int totalUsers;
 
-    // i kept these data members private because i wanted encapsulation
-    // i access them only through member functions so i can control how they change
-
     bool usernameExists(string &u)
     {
         ifstream fin("users.txt");
@@ -46,7 +43,6 @@ private:
 public:
     User()
     {
-        // i made this constructor to initialize my user safely and keep the state consistent (encapsulation)
         username = "";
         password = "";
     }
@@ -61,7 +57,6 @@ public:
     {
         if (!username.empty())
         {
-            // i added this to notice object lifetime, still the data stays hidden (encapsulation)
             cout << "Destructor called for User : " << username << endl;
         }
     }
@@ -182,7 +177,6 @@ public:
 
     string getUsername()
     {
-        // i expose only what i need via a getter (encapsulation)
         return username;
     }
 };
@@ -195,8 +189,6 @@ protected:
     string skillName;
 
 public:
-    // i declared a pure virtual function here to make this class an abstraction
-    // i use it so different skills can implement their own behavior (polymorphism)
     virtual void showTasks(string username) = 0;
 
     int getSavedProgress(string username)
@@ -262,7 +254,6 @@ public:
 
     void showTasks(string username) override
     {
-        // i override the abstract method here to provide specific behavior (abstraction in the base, concrete in the derived)
         ifstream fin("C_Programming.txt");
         try
         {
@@ -423,7 +414,6 @@ public:
 
     void showTasks(string username) override
     {
-        // i am using the same abstract interface and giving a fitness-specific implementation
         ifstream fin("Fitness.txt");
         try
         {
@@ -486,7 +476,6 @@ public:
 
     void showTasks(string username) override
     {
-        // i implement the abstract showTasks for cooking, still accessed via the base type
         ifstream fin("Cooking.txt");
         try
         {
@@ -549,7 +538,6 @@ public:
 
     void showTasks(string username) override
     {
-        // i implement drawing tasks through the same abstract method, showing substitution
         ifstream fin("Drawing.txt");
         try
         {
@@ -612,7 +600,6 @@ public:
 
     void showTasks(string username) override
     {
-        // i keep the interface identical so i can swap skills transparently (abstraction + liskov)
         ifstream fin("Guitar.txt");
         try
         {
@@ -675,7 +662,6 @@ public:
 
     void showTasks(string username) override
     {
-        // i provide journaling behavior under the same abstract contract
         ifstream fin("Journaling.txt");
         try
         {
@@ -738,7 +724,6 @@ public:
 
     void showTasks(string username) override
     {
-        // i use the abstract showTasks and customize for singing
         ifstream fin("Singing.txt");
         try
         {
@@ -839,7 +824,6 @@ int main()
                 cin >> sc;
 
                 Skill *s = NULL;
-                // i use a pointer to the abstract base (abstraction) and assign different concrete skills
 
                 if (sc == 1)
                 {
@@ -875,7 +859,6 @@ int main()
                     continue;
                 }
 
-                // i call the abstract function through the base pointer to show runtime polymorphism
                 s->showTasks(u.getUsername());
                 delete s;
             }
