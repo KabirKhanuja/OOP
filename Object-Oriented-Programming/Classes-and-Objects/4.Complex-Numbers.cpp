@@ -21,7 +21,7 @@ int main(){
     addComp c1, c2;
 
 
-    cout<<"Give x,y for poly1: ";
+    cout<<"Give x,y for poßly1: ";
     cin>>c1.x,c1.y;
     cout<<"\nGive x,y for poly2: ";
     cin>>c2.x,c2.y;
