@@ -12,7 +12,9 @@ class salaries {
     public:
 
     int static count;
-    void get(string n, int sal){
+    void get(string n, int s){
+        name = n;
+        sal = s;
         count++;
     }
 

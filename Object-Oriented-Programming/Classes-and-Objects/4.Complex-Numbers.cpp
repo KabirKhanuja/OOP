@@ -5,8 +5,10 @@ using namespace std;
 // Add Two Complex Numbers (Objects as Parameters & Returning Object)
 
 class addComp {
-    public:
+    private:
     int real,img;
+
+    public:
 
     void set(int x, int y){
         real = x;
