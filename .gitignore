@@ -1,0 +1,24 @@
+# Ignore compiled binaries and temporary build artifacts
+*.o
+*.obj
+*.out
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Ignore compiled programs created from .cpp files (no extension)
+Object-Oriented-Programming/**/[0-9]*
+Pre-OOP/**/[0-9]*
+project/**/[0-9]*
+skillsprint/**/[0-9]*
+
+# Ignore generic a.out-style executables in any folder
+a.out
+
+# Ignore log files
+*.log
+
+# Keep all source files
+!*.cpp
+!*.h
