@@ -22,3 +22,6 @@ a.out
 # Keep all source files
 !*.cpp
 !*.h
+
+.DS_Store
+**/.DS_Store
