@@ -11,21 +11,21 @@ class salaries {
     
     public:
 
-    int static count;
+    static int count; // static declaration
     void get(string n, int s){
         name = n;
         sal = s;
         count++;
     }
 
-    static int getCount(){
+    static int getCount(){ // static function 
         return count;
     }
     
 
 };
 
-int salaries::count=0;
+int salaries::count=0; // static intitialization
 
 int main(){
 
