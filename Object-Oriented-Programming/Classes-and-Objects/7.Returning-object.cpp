@@ -6,7 +6,7 @@ class fetch {
     public:
     int x, y, z;
     
-    fetch set(int a, int b) {
+    fetch set(int a, int b) { // have to name the function with the class name
         fetch temp;
         temp.x = a;
         temp.y = b;
