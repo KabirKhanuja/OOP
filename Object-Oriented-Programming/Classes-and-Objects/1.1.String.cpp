@@ -6,11 +6,10 @@ int main(){
     
     string name;
     cout<<"Enter your name: ";
-    getline(cin, name);
+    getline(cin, name); // getting the full name including spaces and next word 
 
     string ini = "Mr. ";
 
-    cout<<ini.append(name);
-    cout<<"\nFull name length: "<<name.length();
-
+    cout<<ini.append(name); // appending ini + name 
+    cout<<"\nFull name length: "<<name.length(); // printing length as well
 }
