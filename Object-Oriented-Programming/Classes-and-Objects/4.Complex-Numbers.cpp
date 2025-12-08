@@ -6,11 +6,16 @@ using namespace std;
 
 class addComp {
     public:
-    int x,y;
+    int real,img;
+
+    void set(int x, int y){
+        real = x;
+        img = y;
+    }
 
     int add(addComp val){
         cout<<"Expression : ";
-        cout<<x+val.x<<"+"<<y+val.y;
+        cout<<real+val.real<<"+"<<img+val.img<<"i";
     }
 
 };
@@ -19,12 +24,15 @@ int main(){
 
 
     addComp c1, c2;
+    int r1,i1,r2,i2;
 
-
-    cout<<"Give x,y for poßly1: ";
-    cin>>c1.x,c1.y;
+    cout<<"Give x,y for poly1: ";
+    cin>>r1>>i1;
     cout<<"\nGive x,y for poly2: ";
-    cin>>c2.x,c2.y;
+    cin>>r2>>i2;
+
+    c1.set(r1,i1);
+    c2.set(r2,i2);
 
     c1.add(c2);
 
