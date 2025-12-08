@@ -17,27 +17,26 @@ int main() {
     int n;
     cin >> n;
 
-    Student* arr = new Student[n];
+    Student s[n]; 
 
     for (int i = 0; i < n; i++) {
-        cin >> arr[i].roll >> arr[i].name;
-        cin >> arr[i].marks.m1 >> arr[i].marks.m2 >> arr[i].marks.m3;
+        cin >> s[i].roll >> s[i].name;
+        cin >> s[i].marks.m1 >> s[i].marks.m2 >> s[i].marks.m3;
     }
 
     int topIndex = 0;
-    int topTotal = arr[0].marks.m1 + arr[0].marks.m2 + arr[0].marks.m3;
+    int topTotal = s[0].marks.m1 + s[0].marks.m2 + s[0].marks.m3;
 
     for (int i = 1; i < n; i++) {
-        int total = arr[i].marks.m1 + arr[i].marks.m2 + arr[i].marks.m3;
+        int total = s[i].marks.m1 + s[i].marks.m2 + s[i].marks.m3;
         if (total > topTotal) {
             topTotal = total;
             topIndex = i;
         }
     }
 
-    cout << arr[topIndex].roll << " "
-         << arr[topIndex].name << " "
+    cout << s[topIndex].roll << " "
+         << s[topIndex].name << " "
          << topTotal;
 
-    delete[] arr;
 }
