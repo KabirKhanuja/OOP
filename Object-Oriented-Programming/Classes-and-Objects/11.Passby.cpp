@@ -1,4 +1,6 @@
 
+/*
+
 // pass by value 
 void fun(Point p) {   // p is a COPY
     p.x = 10;         // original not affected
@@ -13,3 +15,5 @@ void fun(Point &p) {  // p is original
 void fun(Point* p) { 
     p->x = 10;        // original gets changed
 }
+
+*/
