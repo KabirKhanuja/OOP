@@ -44,3 +44,42 @@ int main() {
     cout<< result.name << " " << result.marks;
 
 }
+
+/*
+
+if you wanted void as the return type 
+
+
+class student {
+public:
+    string name;
+    int marks;
+
+    void compare (student &a, student &b ){
+        if(a.marks > b.marks){
+            cout<<a.marks;
+        }else{
+            cout<<b.marks;
+        }
+    }
+};
+
+
+
+
+int main() {
+    student s1, s2, result;
+
+    cout<<"Enter name marks of studnet 1 : ";
+    cin>>s1.name>>s1.marks;
+    cout<<"Enter name marks of student 2 : ";
+    cin>>s2.name>>s2.marks;
+
+    result.compare (s1,s2);
+
+
+}
+
+
+
+*/
